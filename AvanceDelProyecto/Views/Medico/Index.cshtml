@@ -1,0 +1,45 @@
+﻿@model List<Medico>;
+
+@{
+    ViewData["Title"] = "Inicio Medicos";
+    var medicos = Model;
+}
+
+
+<h1 class="display-4">LISTA MEDICOS</h1>
+
+<button type="button" class="btn btn-dark mb-3" onclick="location.href='@Url.Action("Create", "Medico")'">Crear</button>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">IdMedico</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Nacionalidad</th>
+            <th scope="col">Especialidad</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var medico in medicos)
+        {
+            <tr>
+                <td>@medico.IdMedico</td>
+                <td>@medico.Nombre</td>
+                <td>@medico.Apellido</td>
+                <td>@medico.Nacionalidad</td>
+                <td>@medico.Especialidad</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <a asp-action="Details" asp-route-IdMedico="@medico.IdMedico" class="btn btn-primary me-2"><i class="bi bi-eye-fill"></i></a>
+                        <a asp-action="Edit" asp-route-IdMedico="@medico.IdMedico" class="btn btn-warning me-2"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="Delete" asp-route-IdMedico="@medico.IdMedico" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

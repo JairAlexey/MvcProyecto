@@ -1,0 +1,46 @@
+﻿
+@model List<User>;
+@{
+    ViewData["Title"] = "Inicio Usuarios";
+    var usuarios = Model;
+}
+ 
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<h1 class="display-4">LISTA USUARIOS</h1>
+
+<button type="button" class="btn btn-dark mb-3" onclick="location.href='@Url.Action("Create", "Acceso")'">Crear</button>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">IdUsuario</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Clave</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in usuarios)
+        {
+            <tr>
+                <td>@usuario.IdUsuario</td>
+                <td>@usuario.Correo</td>
+                <td>@usuario.Clave</td>
+
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <a asp-action="Details" asp-route-IdUsuario="@usuario.IdUsuario" class="btn btn-primary me-2"><i class="bi bi-eye-fill"></i></a>
+                        <a asp-action="Edit" asp-route-IdUsuario="@usuario.IdUsuario" class="btn btn-warning me-2"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="Delete" asp-route-IdUsuario="@usuario.IdUsuario" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                    </div>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

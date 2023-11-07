@@ -1,0 +1,42 @@
+﻿@model Cita
+@{
+    ViewData["Title"] = "Visualizar Cita";
+}
+
+<div class="text-center">
+    <h1 class="display-4">VISUALIZAR USUARIO</h1>
+
+    <form class="col-sm-4 mx-auto my-auto" method="post">
+
+        <div class="form-group mb-5">
+            <label for="exampleInputEmail1">Fecha</label>
+            <input asp-for="Fecha" class="form-control mt-2 placeholder-black" placeholder="Ingrese una fecha">
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="exampleInputEmail1">Hora</label>
+            <input asp-for="Hora" class="form-control mt-2 placeholder-black" placeholder="Ingrese la hora">
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="exampleInputEmail1">Descripcion</label>
+            <input asp-for="Descripcion" class="form-control mt-2 placeholder-black" placeholder="Ingrese una descripcion">
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="exampleInputEmail1">IdMedico</label>
+            <input asp-for="IdMedico" class="form-control mt-2 placeholder-black" placeholder="Ingrese el id del Medico">
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="exampleInputEmail1">IdUsuario</label>
+            <input asp-for="IdUsuario" class="form-control mt-2 placeholder-black" placeholder="Ingrese el id del Usuario">
+        </div>
+
+        <div class="form-group mb-5">
+            <a asp-action="index" class="btn btn-warning">Volver</a>
+        </div>
+
+    </form>
+
+</div>

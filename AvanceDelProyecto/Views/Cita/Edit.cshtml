@@ -1,0 +1,57 @@
+﻿@model Cita
+@{
+    ViewData["Title"] = "Editar Citas";
+}
+
+<div class="text-center">
+    <h1 class="display-4">EDITAR CITAS</h1>
+
+    <form class="col-sm-4 mx-auto my-auto" method="POST">
+        <div class="form-group mb-5">
+            <label for="medicoId">ID de Medico</label>
+            <select asp-for="IdMedico" asp-items="ViewBag.Medicos" class="form-control mt-2">
+                <option value="">Seleccione un ID de Medico</option>
+            </select>
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="usuarioId">ID de Usuario</label>
+            <select asp-for="IdUsuario" asp-items="ViewBag.Usuarios" class="form-control mt-2">
+                <option value="">Seleccione un ID de Usuario</option>
+            </select>
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="fecha">Fecha</label>
+            <input asp-for="Fecha" type="date" class="form-control mt-2 placeholder-black" placeholder="Ingrese la fecha de la cita">
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Hora" class="control-label">Hora</label>
+            <select asp-for="Hora" class="form-control">
+                <option value="">Seleccione una hora</option>
+                @for (int i = 8; i <= 20; i++)
+                {
+                    <option value="@i:00">@i:00</option>
+                }
+            </select>
+            <span asp-validation-for="Hora" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="descripcion">Descripción</label>
+            <input asp-for="Descripcion" class="form-control mt-2 placeholder-black" placeholder="Ingrese la descripción de la cita">
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-6 col-md-6">
+                <a asp-action="Index" class="btn btn-warning">Volver</a>
+            </div>
+            <div class="col-6 col-md-6">
+                <button type="submit" class="btn btn-success">Enviar</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>

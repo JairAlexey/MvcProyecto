@@ -1,0 +1,48 @@
+﻿@model Medico
+@{
+    ViewData["Title"] = "Editar Usuarios";
+}
+
+<div class="text-center">
+    <h1 class="display-4">EDITAR USUARIOS</h1>
+
+    <form class="col-sm-4 mx-auto my-auto" method="post">
+
+        <!-- Campo id oculto ya que este no se modifica -->
+        <input type="hidden" asp-for="IdMedico" />
+
+        <div class="form-group mb-5 mt-4">
+            <label for="exampleInputEmail1">Nombre</label>
+            <input asp-for="Nombre" class="form-control mt-2 placeholder-black" placeholder="Ingrese un nombre">
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="exampleInputEmail1">Apellido</label>
+            <input asp-for="Apellido" class="form-control mt-2 placeholder-black" placeholder="Ingrese un apellido">
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="exampleInputEmail1">Nacionalidad</label>
+            <input asp-for="Nacionalidad" class="form-control mt-2 placeholder-black" placeholder="Ingrese la nacionalidad">
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="exampleInputEmail1">Especialidad</label>
+            <input asp-for="Especialidad" class="form-control mt-2 placeholder-black" placeholder="Ingrese la especialidad">
+        </div>
+
+        <div class="row mt-5">
+
+            <div class="col-6 col-md-6">
+                <a asp-action="index" class="btn btn-warning">Volver</a>
+            </div>
+
+            <div class="col-6 col-md-6">
+                <button type="submit" class="btn btn-success">Enviar</button>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
