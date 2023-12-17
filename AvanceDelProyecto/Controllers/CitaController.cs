@@ -21,8 +21,22 @@ namespace AvanceDelProyecto.Controllers
         {
             try
             {
-                var cita = await _apiService.getCita();
-                return View(cita);
+                var citas = await _apiService.getCita();
+
+                // Obtener nombres de médicos y correos de usuarios
+                foreach (var cita in citas)
+                {
+                    var medico = await _apiService.getMedico(cita.IdMedico);
+                    var usuario = await _apiService.getUsuario(cita.IdUsuario);
+
+                    if (medico != null && usuario != null)
+                    {
+                        cita.NombreMedico = medico.Nombre;
+                        cita.CorreoUsuario = usuario.Correo;
+                    }
+                }
+
+                return View(citas);
             }
             catch (Exception e)
             {
@@ -30,16 +44,30 @@ namespace AvanceDelProyecto.Controllers
             }
         }
 
+
         // GET: UsuarioController/Details/5 //ListarDatos
         public async Task<ActionResult> Details(int IdCita)
         {
             var cita = await _apiService.getCita(IdCita);
+
             if (cita != null)
             {
+                // Obtener el nombre del médico y el correo del usuario
+                var medico = await _apiService.getMedico(cita.IdMedico);
+                var usuario = await _apiService.getUsuario(cita.IdUsuario);
+
+                if (medico != null && usuario != null)
+                {
+                    cita.NombreMedico = medico.Nombre;
+                    cita.CorreoUsuario = usuario.Correo;
+                }
+
                 return View(cita);
             }
+
             return RedirectToAction("Index");
         }
+
 
         public async Task<IActionResult> Create()
         {
@@ -60,6 +88,7 @@ namespace AvanceDelProyecto.Controllers
             return View(cita);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Edit(int IdCita)
         {
             await SetMedicosAndUsuariosInViewBag();
@@ -71,13 +100,32 @@ namespace AvanceDelProyecto.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Edit(Cita cita)
+        {
+            var result = await _apiService.updateCita(cita.IdCita, cita);
+            if (result)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            ModelState.AddModelError(string.Empty, "Error al editar la cita. Verifica los datos y vuelve a intentarlo.");
+            await SetMedicosAndUsuariosInViewBag();
+            return View(cita);
+        }
+
+
+
+
         private async Task SetMedicosAndUsuariosInViewBag()
         {
             var medicos = await _apiService.getMedico();
             var usuarios = await _apiService.getUsuario();
-            ViewBag.Medicos = new SelectList(medicos, "IdMedico", "IdMedico");
-            ViewBag.Usuarios = new SelectList(usuarios, "IdUsuario", "IdUsuario");
+
+            // Modificar la siguiente línea para incluir el nombre del médico y el correo del usuario
+            ViewBag.Medicos = new SelectList(medicos.Select(m => new { m.IdMedico, m.Nombre }), "IdMedico", "Nombre");
+            ViewBag.Usuarios = new SelectList(usuarios.Select(u => new { u.IdUsuario, u.Correo }), "IdUsuario", "Correo");
         }
+
 
 
 

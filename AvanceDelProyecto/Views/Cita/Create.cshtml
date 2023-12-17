@@ -9,18 +9,19 @@
     <form class="col-sm-4 mx-auto my-auto" method="POST">
 
         <div class="form-group mb-5">
-            <label for="medicoId">ID de Medico</label>
+            <label for="medicoId">Médico</label>
             <select asp-for="IdMedico" asp-items="ViewBag.Medicos" class="form-control mt-2">
-                <option value="">Seleccione un ID de Medico</option>
+                <option value="">Seleccione un médico</option>
             </select>
         </div>
 
         <div class="form-group mb-5">
-            <label for="usuarioId">ID de Usuario</label>
+            <label for="usuarioId">Usuario</label>
             <select asp-for="IdUsuario" asp-items="ViewBag.Usuarios" class="form-control mt-2">
-                <option value="">Seleccione un ID de Usuario</option>
+                <option value="">Seleccione un usuario</option>
             </select>
         </div>
+
 
         <div class="form-group mb-5">
             <label for="fecha">Fecha</label>

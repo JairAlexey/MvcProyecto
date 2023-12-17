@@ -23,10 +23,11 @@ builder.Services.AddScoped<IApiService, ApiService>();//Iyectamos nuestra intera
 
 var app = builder.Build();
 
+app.UseExceptionHandler("/Home/Error");
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+
 }
 app.UseStaticFiles();
 

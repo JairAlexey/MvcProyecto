@@ -30,7 +30,7 @@ namespace AvanceDelProyecto.Services
         public async Task<List<User>> getUsuario()
         {
 
-            var response = await _httpClient.GetAsync($"{_baseUrl}User"); //var (ya no se recomienda usarlo muchp, mejor poner el tipo de objeto)
+            var response = await _httpClient.GetAsync($"{_baseUrl}/api/User"); //var (ya no se recomienda usarlo muchp, mejor poner el tipo de objeto)
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -44,7 +44,7 @@ namespace AvanceDelProyecto.Services
         {
           
 
-            var response = await _httpClient.GetAsync($"{_baseUrl}User/{IdUsuario}");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/api/User/{IdUsuario}");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -58,7 +58,7 @@ namespace AvanceDelProyecto.Services
         {
             var jsonString = JsonConvert.SerializeObject(usuario);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync($"{_baseUrl}User", content);
+            var response = await _httpClient.PostAsync($"{_baseUrl}/api/User/", content);
             return response.IsSuccessStatusCode;
         }
 
@@ -67,13 +67,13 @@ namespace AvanceDelProyecto.Services
 
             var jsonString = JsonConvert.SerializeObject(usuario);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PutAsync($"{_baseUrl}User/{IdUsuario}", content);
+            var response = await _httpClient.PutAsync($"{_baseUrl}/api/User/{IdUsuario}", content);
             return response.IsSuccessStatusCode;
         }
 
         public async Task<bool> deleteUsuario(int IdUsuario)
         {
-            var response = await _httpClient.DeleteAsync($"{_baseUrl}User/{IdUsuario}");
+            var response = await _httpClient.DeleteAsync($"{_baseUrl}/api/User/{IdUsuario}");
 
             return response.IsSuccessStatusCode;
         }
@@ -83,7 +83,7 @@ namespace AvanceDelProyecto.Services
         public async Task<List<Medico>> getMedico()
         {
 
-            var response = await _httpClient.GetAsync($"{_baseUrl}Medico"); //var (ya no se recomienda usarlo muchp, mejor poner el tipo de objeto)
+            var response = await _httpClient.GetAsync($"{_baseUrl}/api/Medico"); //var (ya no se recomienda usarlo muchp, mejor poner el tipo de objeto)
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -96,7 +96,7 @@ namespace AvanceDelProyecto.Services
         public async Task<Medico> getMedico(int IdMedico)
         {
 
-            var response = await _httpClient.GetAsync($"{_baseUrl}Medico/{IdMedico}");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/api/Medico/{IdMedico}");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -110,7 +110,7 @@ namespace AvanceDelProyecto.Services
         {
             var jsonString = JsonConvert.SerializeObject(medico);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync($"{_baseUrl}Medico", content);
+            var response = await _httpClient.PostAsync($"{_baseUrl}/api/Medico/", content);
             return response.IsSuccessStatusCode;
         }
 
@@ -119,13 +119,13 @@ namespace AvanceDelProyecto.Services
 
             var jsonString = JsonConvert.SerializeObject(medico);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PutAsync($"{_baseUrl}Medico/{IdMedico}", content);
+            var response = await _httpClient.PutAsync($"{_baseUrl}/api/Medico/{IdMedico}", content);
             return response.IsSuccessStatusCode;
         }
 
         public async Task<bool> deleteMedico(int IdMedico)
         {
-            var response = await _httpClient.DeleteAsync($"{_baseUrl}Medico/{IdMedico}");
+            var response = await _httpClient.DeleteAsync($"{_baseUrl}/api/Medico/{IdMedico}");
 
             return response.IsSuccessStatusCode;
         }
@@ -135,7 +135,7 @@ namespace AvanceDelProyecto.Services
 
         public async Task<List<Cita>> getCita()
         {
-            var response = await _httpClient.GetAsync($"{_baseUrl}Cita"); //var (ya no se recomienda usarlo muchp, mejor poner el tipo de objeto)
+            var response = await _httpClient.GetAsync($"{_baseUrl}/api/Cita"); //var (ya no se recomienda usarlo muchp, mejor poner el tipo de objeto)
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -147,7 +147,7 @@ namespace AvanceDelProyecto.Services
 
         public async Task<Cita> getCita(int IdCita)
         {
-            var response = await _httpClient.GetAsync($"{_baseUrl}Cita/{IdCita}");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/api/Cita/{IdCita}");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -161,7 +161,7 @@ namespace AvanceDelProyecto.Services
         {
             var jsonString = JsonConvert.SerializeObject(cita);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync($"{_baseUrl}Cita", content);
+            var response = await _httpClient.PostAsync($"{_baseUrl}/api/Cita/", content);
             return response.IsSuccessStatusCode;
         }
 
@@ -170,30 +170,43 @@ namespace AvanceDelProyecto.Services
 
             var jsonString = JsonConvert.SerializeObject(cita);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PutAsync($"{_baseUrl}Cita/{IdCita}", content);
+            var response = await _httpClient.PutAsync($"{_baseUrl}/api/Cita/{IdCita}", content);
             return response.IsSuccessStatusCode;
         }
 
         public async Task<bool> deleteCita(int IdCita)
         {
-            var response = await _httpClient.DeleteAsync($"{_baseUrl}Cita/ {IdCita}");
+            var response = await _httpClient.DeleteAsync($"{_baseUrl}/api/Cita/{IdCita}");
 
             return response.IsSuccessStatusCode;
         }
 
         public async Task<bool> IniciarSesion(InicioSesion inicioSesion)
         {
-            var usuarios = await getUsuario(); // Asegúrate de que este método esté obteniendo los usuarios correctamente
+            // Asegúrate de que este método esté obteniendo los usuarios correctamente
+            var usuarios = await getUsuario();
 
-            // Verificar si existe un usuario con las credenciales proporcionadas
-            var usuario = usuarios.FirstOrDefault(u => u.Correo == inicioSesion.Correo && u.Clave == inicioSesion.Clave);
+            // Verificar si el usuario es el administrador
+            bool esAdministrador = inicioSesion.Correo == "admin" && inicioSesion.Clave == "admin";
 
-            // Devolver true si se encuentra un usuario que coincida con las credenciales, de lo contrario, devolver false
-            return usuario != null;
+            // Devolver true si es el administrador, de lo contrario, verificar las credenciales normales
+            if (esAdministrador)
+            {
+                return true;
+            }
+            else
+            {
+                // Verificar si existe un usuario con las credenciales proporcionadas
+                var usuario = usuarios.FirstOrDefault(u => u.Correo == inicioSesion.Correo && u.Clave == inicioSesion.Clave);
+
+                // Devolver true si se encuentra un usuario que coincida con las credenciales, de lo contrario, devolver false
+                return usuario != null;
+            }
         }
 
 
-   
+
+
 
     }
 }

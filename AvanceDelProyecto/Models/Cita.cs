@@ -16,6 +16,9 @@
         // ID del Usuario
         public int IdUsuario { get; set; }
 
+        //Nombres
+        public string NombreMedico { get; set; }
+        public string CorreoUsuario { get; set; }
 
     }
 }

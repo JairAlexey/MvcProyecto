@@ -109,6 +109,7 @@ namespace AvanceDelProyecto.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(InicioSesion inicioSesion)
         {
+
             try
             {
                 var result = await _apiService.IniciarSesion(inicioSesion);
